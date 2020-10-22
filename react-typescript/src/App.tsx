@@ -1,12 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-type TitleProps = {
-  title: string,
-  test?: string
+type CounterState = {
+  readonly count: number
 }
-//const Title: React.FC<{ title: string }> = ({ title, children }) => <h1>{title}</h1>
-const Title = ({ title, test = "qqq" }: TitleProps) => <h1>{title}</h1>
 
-const App = () => <Title title="test" />
+type CounterProps = {
+  readonly title?: string,
+
+}
+class Counter extends Component<CounterProps, CounterState> {
+
+
+  constructor(props: CounterProps) {
+    super(props)
+    this.state = {
+      count: 0
+    }
+  }
+
+  static getDerivedStateFromProps(props: CounterProps, state: CounterState): CounterState | null {
+    return true ? { count: 2 } : null;
+  }
+
+  componentDidMount(): void {
+
+  }
+  shouldComponentUpdate(nextProps: CounterProps, nextState: CounterState): boolean {
+    return true
+
+  }
+
+  handleClick = () => {
+    this.setState(
+      ({ count }) => ({
+        count: ++count
+      })
+    )
+  };
+  render() {
+    return (
+      <div>
+        <h1>{this.props.title}{this.state.count}</h1>
+        <button onClick={this.handleClick}>+1</button>
+      </div>
+    )
+  }
+
+}
+
+const App = () => <Counter title="This title" />
 
 export default App;
