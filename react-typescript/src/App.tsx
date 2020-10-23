@@ -18,9 +18,9 @@ class Counter extends Component<CounterProps, CounterState> {
     }
   }
 
-  static getDerivedStateFromProps(props: CounterProps, state: CounterState): CounterState | null {
-    return true ? { count: 2 } : null;
-  }
+  // static getDerivedStateFromProps(props: CounterProps, state: CounterState): CounterState | null {
+  //   return true ? { count: 3 } : null;
+  // }
 
   componentDidMount(): void {
 
